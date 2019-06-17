@@ -9,6 +9,10 @@ events_create:
   path: /events
   controller: App\Controller\EventController::create
   methods: POST
+events_delete:
+  path: /events
+  controller: App\Controller\EventController::delete
+  methods: DELETE
 videos_index:
   path: /videos
   controller: App\Controller\VideoController::index
@@ -17,3 +21,7 @@ videos_create:
   path: /videos
   controller: App\Controller\VideoController::create
   methods: POST
+videos_delete:
+  path: /videos
+  controller: App\Controller\VideoController::delete
+  methods: DELETE

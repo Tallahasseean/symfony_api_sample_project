@@ -58,4 +58,12 @@ class VideoController extends AbstractController
 
         return View::create($video, Response::HTTP_CREATED);
     }
+
+    public function delete(Request $request){
+        $entityManager = $this->getDoctrine()->getManager();
+        $video = $entityManager->getRepository(Video::class)->find($request->get('id'));
+        $entityManager->remove($video);
+        $entityManager->flush();
+        return View::create($video, Response::HTTP_NO_CONTENT);
+    }
 }
