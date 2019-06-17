@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Entity\Video;
-use App\Repository\VideoRepository;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,9 +29,7 @@ class VideoController extends AbstractController
 
         $videos = $this->getDoctrine()->getRepository(Video::class)->findBy($searchParams);
 
-        $view = $this->json($videos);
-
-        return $view;
+        return View::create($videos, Response::HTTP_OK);
     }
 
     /**

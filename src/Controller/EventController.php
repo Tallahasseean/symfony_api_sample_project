@@ -15,15 +15,14 @@ class EventController extends AbstractController
     /**
      * List all events
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return View
      */
     public function index()
     {
 
         $events = $this->getDoctrine()->getRepository(Event::class)->findAll();
-        $view   = $this->json($events);
 
-        return $view;
+        return View::create($events, Response::HTTP_OK);
     }
 
     /**
