@@ -1,3 +1,11 @@
 index:
     path: /
     controller: App\Controller\PageController::index
+events_index:
+  path: /events
+  controller: App\Controller\EventController::index
+  methods: GET
+events_create:
+  path: /events
+  controller: App\Controller\EventController::create
+  methods: POST
