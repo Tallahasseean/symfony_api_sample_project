@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Entity\Video;
+use App\Repository\VideoRepository;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,10 +14,23 @@ use Symfony\Component\HttpFoundation\Response;
 class VideoController extends AbstractController
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $videos = $this->getDoctrine()->getRepository(Video::class)->findAll();
-        $view   = $this->json($videos);
+        $name         = $request->query->get('name');
+        $eventId      = $request->query->get('eventId');
+        $searchParams = [];
+
+        if ( ! empty($name)) {
+            $searchParams['title'] = $name;
+        }
+
+        if ( ! empty($eventId)) {
+            $searchParams['event'] = $eventId;
+        }
+
+        $videos = $this->getDoctrine()->getRepository(Video::class)->findBy($searchParams);
+
+        $view = $this->json($videos);
 
         return $view;
     }
