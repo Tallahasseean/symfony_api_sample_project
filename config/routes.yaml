@@ -9,3 +9,11 @@ events_create:
   path: /events
   controller: App\Controller\EventController::create
   methods: POST
+videos_index:
+  path: /videos
+  controller: App\Controller\VideoController::index
+  methods: GET
+videos_create:
+  path: /videos
+  controller: App\Controller\VideoController::create
+  methods: POST

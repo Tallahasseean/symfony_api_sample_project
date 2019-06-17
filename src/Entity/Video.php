@@ -3,36 +3,50 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VideoRepository")
+ * @ExclusionPolicy("all")
  */
 class Video
 {
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", fetch="EAGER")
+     * @Expose
+     */
+    private $event;
+
+    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Expose
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Expose
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Expose
      */
     private $description;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Expose
      */
     private $thumbnail;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Expose
      */
     private $playlistUrl;
 
@@ -87,5 +101,21 @@ class Video
         $this->playlistUrl = $playlistUrl;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param mixed $event
+     */
+    public function setEvent($event): void
+    {
+        $this->event = $event;
     }
 }

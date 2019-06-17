@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
+ * @ExclusionPolicy("all")
  */
 class Event
 {
@@ -13,26 +16,31 @@ class Event
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Expose
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Expose
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Expose
      */
     private $description;
 
     /**
      * @ORM\Column(type="date")
+     * @Expose
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="date")
+     * @Expose
      */
     private $endDate;
 
